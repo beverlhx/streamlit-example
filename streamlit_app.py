@@ -35,3 +35,7 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
 
 st.balloons()
 st.snow()
+
+prompt = st.chat_input("Say something")
+if prompt:
+    st.write(f"User has sent the following prompt: {prompt}")
