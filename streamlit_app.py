@@ -39,8 +39,15 @@ In the meantime, below is an example of what you can do with just a few lines of
 #         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
 #     ))
 
-df = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=['lat', 'lon'])
+df = pd.DataFrame({
+    "col1": np.random.randn(1000) / 50 + 37.76,
+    "col2": np.random.randn(1000) / 50 + -122.4,
+    "col3": np.random.randn(1000) * 100,
+    "col4": np.random.rand(1000, 4).tolist(),
+})
 
-st.map(df, size=20, color='#0044ff')
+st.map(df,
+    latitude='col1',
+    longitude='col2',
+    size='col3',
+    color='col4')
