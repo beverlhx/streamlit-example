@@ -88,14 +88,13 @@ def main():
     reset.button('New game', on_click=init, args=(True,))
     st.divider()
 
-    with settings.expander('Settings'):
-        st.selectbox(
-            'Select opponent',
-            ['Human', 'Computer'],
-            key='opponent',
-            on_change=init,
-            args=(True,),
-        )
+    st.selectbox(
+        'Select opponent',
+        ['Human', 'Computer'],
+        key='opponent',
+        on_change=init,
+        args=(True,),
+    )
 
     for i, row in enumerate(st.session_state.board):
         cols = st.columns([5, 1, 1, 1, 5])
