@@ -88,7 +88,7 @@ def main():
     reset.button('New game', on_click=init, args=(True,))
     with settings.expander('Settings'):
         st.selectbox(
-            'Set opponent',
+            'Select opponent',
             ['Human', 'Computer'],
             key='opponent',
             on_change=init,
