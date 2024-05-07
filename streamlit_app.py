@@ -2,7 +2,8 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-import random
+import chess
+import chess.svg
 
 """
 # Welcome to the world of awesome software engineers!
@@ -36,26 +37,24 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
 
 
 
-def guess_the_number_game():
-    st.title("Guess the Number Game")
-    number_to_guess = random.randint(1, 100)
-    attempts = 0
-    feedback = ""
+def play_chess():
+    st.title("Simple Chess Game")
+    board = chess.Board()
 
-    while True:
-        user_guess = st.number_input("Enter your guess (between 1 and 100)", min_value=1, max_value=100)
-        if st.button("Submit Guess"):
-            attempts += 1
-            if user_guess < number_to_guess:
-                feedback = "Too low! Try a higher number."
-            elif user_guess > number_to_guess:
-                feedback = "Too high! Try a lower number."
-            else:
-                feedback = f"Congratulations! You guessed the number {number_to_guess} in {attempts} attempts."
-                st.success(feedback)
-                break
+    while not board.is_game_over():
+        st.write("Current board:")
+        st.image(chess.svg.board(board=board))
 
-        st.write(feedback)
+        move_input = st.text_input("Enter your move (e.g., e2e4):")
+        if st.button("Make Move"):
+            try:
+                move = chess.Move.from_uci(move_input)
+                if move in board.legal_moves:
+                    board.push(move)
+                else:
+                    st.warning("Invalid move! Try again.")
+            except ValueError:
+                st.warning("Invalid move format! Use UCI notation (e.g., e2e4).")
 
-
-guess_the_number_game()
+    st.write("Game Over!")
+    st.write("Result:", board.result())
