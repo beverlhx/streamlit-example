@@ -86,7 +86,7 @@ def main():
 
     reset, score, player, settings = st.columns([0.5, 0.6, 1, 1])
     reset.button('New game', on_click=init, args=(True,))
-    st.divider(divider="rainbow")
+    st.divider()
 
     with settings.expander('Settings'):
         st.write('**Warning**: changing this setting will restart your game')
