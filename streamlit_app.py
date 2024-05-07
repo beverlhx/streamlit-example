@@ -83,5 +83,4 @@ def play_tic_tac_toe():
             except ValueError:
                 st.warning("Invalid move format! Use row and column numbers (e.g., 1 2).")
 
-if __name__ == "__main__":
-    play_tic_tac_toe()
+play_tic_tac_toe()
