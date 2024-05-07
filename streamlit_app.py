@@ -7,7 +7,7 @@ def init(post_init=False):
     if not post_init:
         st.session_state.opponent = 'Human'
         st.session_state.win = {'X': 0, 'O': 0}
-    st.session_state.board = np.full((3, 3), '.', dtype=str)
+    st.session_state.board = np.full((4, 4), '.', dtype=str)
     st.session_state.player = 'X'
     st.session_state.warning = False
     st.session_state.winner = None
