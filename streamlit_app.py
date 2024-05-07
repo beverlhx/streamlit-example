@@ -80,7 +80,7 @@ def handle_click(i, j):
 
 
 def main():
-    st.header("Let's Play Tic Tac Toe!", divider="rainbow")
+
     if "board" not in st.session_state:
         init()
 
