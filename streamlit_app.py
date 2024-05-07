@@ -2,8 +2,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-import chess
-import chess.svg
+
 
 """
 # Welcome to the world of awesome software engineers!
@@ -35,8 +34,6 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
 
-import streamlit as st
-import numpy as np
 
 def check_winner(board):
     # Check rows, columns, and diagonals for a win
