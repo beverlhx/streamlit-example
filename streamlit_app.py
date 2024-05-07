@@ -118,7 +118,7 @@ def handle_click(i, j):
 def main():
     st.write(
         """
-        # ❎🅾️ Tic Tac Toe
+        # Tic Tac Toe ❎🅾️ 
         """
     )
 
