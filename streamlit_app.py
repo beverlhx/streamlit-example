@@ -44,16 +44,15 @@ st.write(number_to_guess)
 
 while True:
     user_guess = st.number_input("Enter your guess (between 1 and 100)", min_value=1, max_value=100)
-    if st.button("Submit Guess"):
-        attempts += 1
-        if user_guess < number_to_guess:
-            feedback = "Too low! Try a higher number."
-        elif user_guess > number_to_guess:
-            feedback = "Too high! Try a lower number."
-        else:
-            feedback = f"Congratulations! You guessed the number {number_to_guess} in {attempts} attempts."
-            st.success(feedback)
-            break
+
+    if user_guess < number_to_guess:
+        feedback = "Too low! Try a higher number."
+    elif user_guess > number_to_guess:
+        feedback = "Too high! Try a lower number."
+    else:
+        feedback = f"Congratulations! You guessed the number {number_to_guess} in {attempts} attempts."
+        st.success(feedback)
+        break
 
     st.write(feedback)
 
