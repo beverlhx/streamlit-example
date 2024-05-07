@@ -35,26 +35,56 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
 
+import streamlit as st
+import numpy as np
 
+def check_winner(board):
+    # Check rows, columns, and diagonals for a win
+    for row in range(3):
+        if board[row][0] == board[row][1] == board[row][2] != ' ':
+            return board[row][0]
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] != ' ':
+            return board[0][col]
+    if board[0][0] == board[1][1] == board[2][2] != ' ':
+        return board[0][0]
+    if board[0][2] == board[1][1] == board[2][0] != ' ':
+        return board[0][2]
+    return None
 
-def play_chess():
-    st.title("Simple Chess Game")
-    board = chess.Board()
+def display_board(board):
+    for row in board:
+        st.write(" | ".join(row))
+        st.write("-" * 9)
 
-    while not board.is_game_over():
+def play_tic_tac_toe():
+    st.title("Tic-Tac-Toe Game")
+    board = np.array([[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']])
+    player = 'X'
+
+    while True:
         st.write("Current board:")
-        st.image(chess.svg.board(board=board))
+        display_board(board)
 
-        move_input = st.text_input("Enter your move (e.g., e2e4):")
+        move_input = st.text_input(f"Player {player}, enter your move (e.g., 1 2 for row 1, column 2):")
         if st.button("Make Move"):
             try:
-                move = chess.Move.from_uci(move_input)
-                if move in board.legal_moves:
-                    board.push(move)
+                row, col = map(int, move_input.split())
+                if board[row-1][col-1] == ' ':
+                    board[row-1][col-1] = player
+                    winner = check_winner(board)
+                    if winner:
+                        st.success(f"Player {winner} wins!")
+                        break
+                    elif ' ' not in board:
+                        st.warning("It's a draw!")
+                        break
+                    else:
+                        player = 'O' if player == 'X' else 'X'
                 else:
-                    st.warning("Invalid move! Try again.")
+                    st.warning("Invalid move! Position already taken.")
             except ValueError:
-                st.warning("Invalid move format! Use UCI notation (e.g., e2e4).")
+                st.warning("Invalid move format! Use row and column numbers (e.g., 1 2).")
 
-    st.write("Game Over!")
-    st.write("Result:", board.result())
+if __name__ == "__main__":
+    play_tic_tac_toe()
