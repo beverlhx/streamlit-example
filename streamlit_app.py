@@ -89,9 +89,8 @@ def main():
     st.divider()
 
     with settings.expander('Settings'):
-        st.write('**Warning**: changing this setting will restart your game')
         st.selectbox(
-            'Set opponent',
+            'Select opponent',
             ['Human', 'Computer'],
             key='opponent',
             on_change=init,
