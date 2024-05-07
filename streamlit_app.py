@@ -86,7 +86,6 @@ def main():
 
     reset, score, player, settings = st.columns([0.5, 0.6, 1, 1])
     reset.button('New game', on_click=init, args=(True,))
-    st.divider()
 
     st.selectbox(
         'Select opponent',
@@ -95,6 +94,8 @@ def main():
         on_change=init,
         args=(True,),
     )
+    
+    st.divider()
 
     for i, row in enumerate(st.session_state.board):
         cols = st.columns([5, 1, 1, 1, 5])
