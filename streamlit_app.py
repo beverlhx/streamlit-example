@@ -86,14 +86,14 @@ def main():
 
     reset, score, player, settings = st.columns([0.5, 0.6, 1, 1])
     reset.button('New game', on_click=init, args=(True,))
-
-    st.selectbox(
-        'Select opponent',
-        ['Human', 'Computer'],
-        key='opponent',
-        on_change=init,
-        args=(True,),
-    )
+    with st.expander('Settings'):
+        st.selectbox(
+            'Select opponent',
+            ['Human', 'Computer'],
+            key='opponent',
+            on_change=init,
+            args=(True,),
+        )
     
     st.divider()
 
