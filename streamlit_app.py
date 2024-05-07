@@ -40,6 +40,7 @@ def guess_the_number_game():
     number_to_guess = random.randint(1, 100)
     attempts = 0
     feedback = ""
+    print(number_to_guess)
 
     while True:
         user_guess = st.number_input("Enter your guess (between 1 and 100)", min_value=1, max_value=100)
