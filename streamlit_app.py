@@ -2,7 +2,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-
+import random
 
 """
 # Welcome to the world of awesome software engineers!
@@ -35,52 +35,25 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
     ))
 
 
-def check_winner(board):
-    # Check rows, columns, and diagonals for a win
-    for row in range(3):
-        if board[row][0] == board[row][1] == board[row][2] != ' ':
-            return board[row][0]
-    for col in range(3):
-        if board[0][col] == board[1][col] == board[2][col] != ' ':
-            return board[0][col]
-    if board[0][0] == board[1][1] == board[2][2] != ' ':
-        return board[0][0]
-    if board[0][2] == board[1][1] == board[2][0] != ' ':
-        return board[0][2]
-    return None
-
-def display_board(board):
-    for row in board:
-        st.write(" | ".join(row))
-        st.write("-" * 9)
-
-def play_tic_tac_toe():
-    st.title("Tic-Tac-Toe Game")
-    board = np.array([[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']])
-    player = 'X'
+def guess_the_number_game():
+    st.title("Guess the Number Game")
+    number_to_guess = random.randint(1, 100)
+    attempts = 0
+    feedback = ""
 
     while True:
-        st.write("Current board:")
-        display_board(board)
+        user_guess = st.number_input("Enter your guess (between 1 and 100)", min_value=1, max_value=100)
+        if st.button("Submit Guess"):
+            attempts += 1
+            if user_guess < number_to_guess:
+                feedback = "Too low! Try a higher number."
+            elif user_guess > number_to_guess:
+                feedback = "Too high! Try a lower number."
+            else:
+                feedback = f"Congratulations! You guessed the number {number_to_guess} in {attempts} attempts."
+                st.success(feedback)
+                break
 
-        move_input = st.text_input(f"Player {player}, enter your move (e.g., 1 2 for row 1, column 2):")
-        if st.button("Make Move"):
-            try:
-                row, col = map(int, move_input.split())
-                if board[row-1][col-1] == ' ':
-                    board[row-1][col-1] = player
-                    winner = check_winner(board)
-                    if winner:
-                        st.success(f"Player {winner} wins!")
-                        break
-                    elif ' ' not in board:
-                        st.warning("It's a draw!")
-                        break
-                    else:
-                        player = 'O' if player == 'X' else 'X'
-                else:
-                    st.warning("Invalid move! Position already taken.")
-            except ValueError:
-                st.warning("Invalid move format! Use row and column numbers (e.g., 1 2).")
+        st.write(feedback)
 
-play_tic_tac_toe()
+guess_the_number_game()
