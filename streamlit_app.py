@@ -2,9 +2,6 @@ import streamlit as st
 import numpy as np
 import random
 
-"""
-# Let's play Tic Tac Toe!
-"""
 
 def init(post_init=False):
     if not post_init:
@@ -83,6 +80,7 @@ def handle_click(i, j):
 
 
 def main():
+    st.header('Let's Play Tic Tac Toe!', divider='rainbow')
     if "board" not in st.session_state:
         init()
 
