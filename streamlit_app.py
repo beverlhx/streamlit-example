@@ -57,4 +57,5 @@ def guess_the_number_game():
 
         st.write(feedback)
 
-guess_the_number_game()
+if __name__ == "__main__":
+    guess_the_number_game()
