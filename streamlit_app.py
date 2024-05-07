@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 """
-# Welcome to the world of awesome software engineers!
+# Let's play Tic Tac Toe!
 """
 
 def init(post_init=False):
@@ -83,12 +83,6 @@ def handle_click(i, j):
 
 
 def main():
-    st.write(
-        """
-        # Tic Tac Toe
-        """
-    )
-
     if "board" not in st.session_state:
         init()
 
