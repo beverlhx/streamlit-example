@@ -40,7 +40,6 @@ def check_diagonals(board):
 def check_state():
     if st.session_state.winner:
         st.success(f"Congrats! {st.session_state.winner} won the game! 🎈")
-        st.balloons()
     if st.session_state.warning and not st.session_state.over:
         st.warning('⚠️ This move already exist')
     if st.session_state.winner and not st.session_state.over:
