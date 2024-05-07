@@ -35,24 +35,3 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
     ))
 
 
-
-st.title("Guess the Number Game")
-number_to_guess = random.randint(1, 100)
-attempts = 0
-feedback = ""
-st.write(number_to_guess)
-
-while True:
-    user_guess = st.number_input("Enter your guess (between 1 and 100)", min_value=1, max_value=100)
-
-    if user_guess < number_to_guess:
-        feedback = "Too low! Try a higher number."
-    elif user_guess > number_to_guess:
-        feedback = "Too high! Try a lower number."
-    else:
-        feedback = f"Congratulations! You guessed the number {number_to_guess} in {attempts} attempts."
-        st.success(feedback)
-        break
-
-    st.write(feedback)
-
