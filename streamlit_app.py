@@ -85,7 +85,7 @@ def main():
 
     if "board" not in st.session_state:
         init()
-    st.header("Let's play Tic Tac Toe, divider="rainbow")
+    st.header("Let's play Tic Tac Toe", divider="rainbow")
     reset, score, player, settings = st.columns([0.5, 0.6, 1, 1])
     reset.button('New game', on_click=init, args=(True,))
     with settings.expander('Settings'):
