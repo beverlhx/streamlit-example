@@ -40,7 +40,6 @@ def check_diagonals(board):
 def check_state():
     if st.session_state.winner:
         st.success(f"Congrats! {st.session_state.winner} won the game! 🎈")
-        st.balloons()
     if st.session_state.warning and not st.session_state.over:
         st.warning('⚠️ This move already exist')
     if st.session_state.winner and not st.session_state.over:
@@ -50,7 +49,6 @@ def check_state():
         )
     elif not check_available_moves() and not st.session_state.winner:
         st.info(f'It\'s a tie 📍')
-        st.snow()
         st.session_state.over = True
 
 
@@ -85,7 +83,7 @@ def main():
 
     if "board" not in st.session_state:
         init()
-    st.header("Let's play tic tac toe", divider="rainbow")
+        
     reset, score, player, settings = st.columns([0.5, 0.6, 1, 1])
     reset.button('New game', on_click=init, args=(True,))
     with settings.expander('Settings'):
